@@ -1,0 +1,212 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  firstName     String
+  lastName      String
+  phone         String?
+  role          Role      @default(AGENT)
+  avatar        String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  leads         Lead[]    @relation("LeadAssignedTo")
+  tasks         Task[]    @relation("TaskAssignedTo")
+  properties    Property[]
+  activities    Activity[]
+  createdLeads  Lead[]    @relation("LeadCreatedBy")
+  
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  AGENT
+}
+
+model Lead {
+  id              String       @id @default(uuid())
+  firstName       String
+  lastName        String
+  email           String
+  phone           String
+  source          LeadSource   @default(WEBSITE)
+  status          LeadStatus   @default(NEW)
+  priority        Priority     @default(MEDIUM)
+  budget          Float?
+  preferredLocation String?
+  propertyType    String?
+  notes           String?
+  assignedToId    String?
+  assignedTo      User?        @relation("LeadAssignedTo", fields: [assignedToId], references: [id])
+  createdById     String?
+  createdBy       User?        @relation("LeadCreatedBy", fields: [createdById], references: [id])
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  
+  activities      Activity[]
+  tasks           Task[]
+  
+  @@map("leads")
+}
+
+enum LeadSource {
+  WEBSITE
+  REFERRAL
+  SOCIAL_MEDIA
+  COLD_CALL
+  WALK_IN
+  EMAIL
+  ADVERTISEMENT
+  OTHER
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  NEGOTIATION
+  WON
+  LOST
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model Property {
+  id              String         @id @default(uuid())
+  title           String
+  description     String?
+  propertyType    PropertyType
+  listingType     ListingType
+  price           Float
+  area            Float
+  bedrooms        Int?
+  bathrooms       Int?
+  address         String
+  city            String
+  state           String
+  zipCode         String?
+  country         String         @default("India")
+  latitude        Float?
+  longitude       Float?
+  images          String[]       @default([])
+  amenities       String[]       @default([])
+  status          PropertyStatus @default(AVAILABLE)
+  ownerId         String?
+  owner           User?          @relation(fields: [ownerId], references: [id])
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  
+  activities      Activity[]
+  
+  @@map("properties")
+}
+
+enum PropertyType {
+  APARTMENT
+  VILLA
+  HOUSE
+  LAND
+  COMMERCIAL
+  OFFICE
+  WAREHOUSE
+}
+
+enum ListingType {
+  SALE
+  RENT
+  LEASE
+}
+
+enum PropertyStatus {
+  AVAILABLE
+  SOLD
+  RENTED
+  UNDER_CONTRACT
+  OFF_MARKET
+}
+
+model Contact {
+  id            String    @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String    @unique
+  phone         String?
+  company       String?
+  position      String?
+  address       String?
+  city          String?
+  notes         String?
+  tags          String[]  @default([])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@map("contacts")
+}
+
+model Task {
+  id            String      @id @default(uuid())
+  title         String
+  description   String?
+  dueDate       DateTime
+  priority      Priority    @default(MEDIUM)
+  status        TaskStatus  @default(TODO)
+  leadId        String?
+  lead          Lead?       @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  assignedToId  String?
+  assignedTo    User?       @relation("TaskAssignedTo", fields: [assignedToId], references: [id])
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  @@map("tasks")
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Activity {
+  id            String       @id @default(uuid())
+  type          ActivityType
+  title         String
+  description   String?
+  leadId        String?
+  lead          Lead?        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  propertyId    String?
+  property      Property?    @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId        String?
+  user          User?        @relation(fields: [userId], references: [id])
+  createdAt     DateTime     @default(now())
+  
+  @@map("activities")
+}
+
+enum ActivityType {
+  CALL
+  EMAIL
+  MEETING
+  NOTE
+  PROPERTY_VIEW
+  FOLLOW_UP
+  STATUS_CHANGE
+}
