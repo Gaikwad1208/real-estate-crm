@@ -1,0 +1,42 @@
+{
+  "name": "LeadPropertyMatch",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string"
+    },
+    "property_id": {
+      "type": "string"
+    },
+    "match_score": {
+      "type": "number",
+      "description": "0-100"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "suggested",
+        "shared_with_client",
+        "shortlisted",
+        "rejected_by_client",
+        "booked",
+        "lost"
+      ],
+      "default": "suggested"
+    },
+    "last_shared_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lead_name": {
+      "type": "string"
+    },
+    "property_title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "lead_id",
+    "property_id"
+  ]
+}

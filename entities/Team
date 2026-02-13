@@ -1,0 +1,28 @@
+{
+  "name": "Team",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Team name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "owner_user_id": {
+      "type": "string",
+      "description": "Owner user ID"
+    },
+    "target_monthly_revenue": {
+      "type": "number",
+      "description": "Monthly revenue target in INR"
+    },
+    "target_lead_count": {
+      "type": "number",
+      "description": "Monthly lead target"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

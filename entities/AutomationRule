@@ -1,0 +1,41 @@
+{
+  "name": "AutomationRule",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "trigger_type": {
+      "type": "string",
+      "enum": [
+        "lead_created",
+        "stage_changed",
+        "no_activity_for_x_days",
+        "budget_above_x",
+        "source_is",
+        "lead_score_above",
+        "temperature_changed"
+      ],
+      "description": "What triggers this rule"
+    },
+    "conditions": {
+      "type": "object",
+      "description": "JSON conditions"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of action configs"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "trigger_type"
+  ]
+}

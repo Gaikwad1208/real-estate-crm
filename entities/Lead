@@ -1,0 +1,192 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Full name of the lead"
+    },
+    "primary_phone": {
+      "type": "string",
+      "description": "Primary phone number"
+    },
+    "secondary_phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "whatsapp_number": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "facebook_ads",
+        "instagram_ads",
+        "google_ads",
+        "youtube_ads",
+        "portal_99acres",
+        "portal_magicbricks",
+        "website_landing_page",
+        "walkin",
+        "referral",
+        "csv_import",
+        "other"
+      ],
+      "description": "Lead source"
+    },
+    "source_sub_type": {
+      "type": "string",
+      "description": "Campaign name, ad set, etc."
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    },
+    "budget_min": {
+      "type": "number",
+      "description": "Minimum budget in INR"
+    },
+    "budget_max": {
+      "type": "number",
+      "description": "Maximum budget in INR"
+    },
+    "preferred_city": {
+      "type": "string"
+    },
+    "preferred_area": {
+      "type": "string"
+    },
+    "pin_code": {
+      "type": "string"
+    },
+    "property_type": {
+      "type": "string",
+      "enum": [
+        "apartment",
+        "villa",
+        "plot",
+        "commercial",
+        "other"
+      ]
+    },
+    "bedrooms": {
+      "type": "number"
+    },
+    "bathrooms": {
+      "type": "number"
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "end_use",
+        "investment",
+        "flip",
+        "rental"
+      ]
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "immediate_0_30",
+        "short_30_90",
+        "mid_3_6_months",
+        "long_6plus",
+        "just_exploring"
+      ]
+    },
+    "financing_status": {
+      "type": "string",
+      "enum": [
+        "cash",
+        "loan_required",
+        "preapproved_loan",
+        "unsure"
+      ]
+    },
+    "funnel_stage": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "consultation_scheduled",
+        "site_visit_done",
+        "negotiation",
+        "under_contract",
+        "closed_won",
+        "closed_lost",
+        "on_hold",
+        "junk"
+      ],
+      "default": "new"
+    },
+    "lead_temperature": {
+      "type": "string",
+      "enum": [
+        "hot",
+        "warm",
+        "cold"
+      ],
+      "default": "cold"
+    },
+    "lead_score": {
+      "type": "number",
+      "description": "Score 0-100"
+    },
+    "assigned_agent_id": {
+      "type": "string"
+    },
+    "assigned_team_id": {
+      "type": "string"
+    },
+    "last_contacted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_inbound_activity_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_outbound_activity_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_stage_changed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_duplicate": {
+      "type": "boolean",
+      "default": false
+    },
+    "merged_into_lead_id": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "full_name",
+    "primary_phone"
+  ]
+}

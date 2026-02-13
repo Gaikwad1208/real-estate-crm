@@ -1,0 +1,48 @@
+{
+  "name": "ImportBatch",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "csv",
+        "portal_export",
+        "other"
+      ],
+      "default": "csv"
+    },
+    "total_rows": {
+      "type": "number"
+    },
+    "success_count": {
+      "type": "number"
+    },
+    "error_count": {
+      "type": "number"
+    },
+    "duplicate_count": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "processing"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

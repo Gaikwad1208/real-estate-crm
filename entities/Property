@@ -1,0 +1,112 @@
+{
+  "name": "Property",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "developer_name": {
+      "type": "string"
+    },
+    "rera_id": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "area": {
+      "type": "string"
+    },
+    "pin_code": {
+      "type": "string"
+    },
+    "property_type": {
+      "type": "string",
+      "enum": [
+        "apartment",
+        "villa",
+        "plot",
+        "commercial",
+        "other"
+      ]
+    },
+    "configuration": {
+      "type": "string",
+      "description": "1RK, 1BHK, 2BHK, etc."
+    },
+    "super_builtup_area": {
+      "type": "number"
+    },
+    "carpet_area": {
+      "type": "number"
+    },
+    "area_unit": {
+      "type": "string",
+      "enum": [
+        "sqft",
+        "sqm"
+      ],
+      "default": "sqft"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in INR"
+    },
+    "price_sqft": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "blocked",
+        "sold",
+        "under_negotiation"
+      ],
+      "default": "available"
+    },
+    "amenities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "geo_lat": {
+      "type": "number"
+    },
+    "geo_lng": {
+      "type": "number"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "brochure_url": {
+      "type": "string"
+    },
+    "floor_plan_url": {
+      "type": "string"
+    },
+    "listed_on_portals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "title",
+    "city"
+  ]
+}

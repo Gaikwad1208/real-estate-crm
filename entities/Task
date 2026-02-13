@@ -1,0 +1,63 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "Related lead ID (optional)"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "followup_call",
+        "whatsapp_followup",
+        "email_followup",
+        "site_visit",
+        "documentation",
+        "payment_followup",
+        "generic"
+      ],
+      "default": "generic"
+    },
+    "due_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Due date and time"
+    },
+    "assigned_user_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed",
+        "cancelled",
+        "overdue"
+      ],
+      "default": "pending"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium"
+    },
+    "lead_name": {
+      "type": "string",
+      "description": "Cached lead name for display"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

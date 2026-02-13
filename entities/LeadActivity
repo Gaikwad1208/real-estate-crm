@@ -1,0 +1,73 @@
+{
+  "name": "LeadActivity",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "Related lead ID"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "call_outbound",
+        "call_inbound",
+        "whatsapp",
+        "sms",
+        "email",
+        "meeting",
+        "site_visit",
+        "note",
+        "status_change",
+        "task",
+        "import_log",
+        "system_automation"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "inbound",
+        "outbound",
+        "system"
+      ]
+    },
+    "note": {
+      "type": "string",
+      "description": "Message summary or note"
+    },
+    "call_duration_seconds": {
+      "type": "number"
+    },
+    "whatsapp_message_type": {
+      "type": "string",
+      "enum": [
+        "template",
+        "freeform",
+        "broadcast"
+      ]
+    },
+    "contact_channel": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "whatsapp",
+        "email",
+        "in_person",
+        "portal",
+        "webhook"
+      ]
+    },
+    "old_value": {
+      "type": "string",
+      "description": "Previous value for status changes"
+    },
+    "new_value": {
+      "type": "string",
+      "description": "New value for status changes"
+    }
+  },
+  "required": [
+    "lead_id",
+    "type"
+  ]
+}
